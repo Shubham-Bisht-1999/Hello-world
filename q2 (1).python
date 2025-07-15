@@ -1,18 +1,9 @@
-import requests
-import pandas as pd
-from bs4 import BeautifulSoup
-
-# URL for Tesla revenue data
-url_tesla = 'https://www.macrotrends.net/stocks/charts/TSLA/tesla/revenue'
-html_data_tesla = requests.get(url_tesla).text
-
-# Parse the HTML content
-soup_tesla = BeautifulSoup(html_data_tesla, 'html.parser')
-tables_tesla = pd.read_html(html_data_tesla)
-
-# Extract the revenue table
-tesla_revenue = tables_tesla[0]  # Adjust index based on the actual table
-tesla_revenue.columns = ['Date', 'Revenue']
-tesla_revenue["Revenue"] = tesla_revenue['Revenue'].str.replace(',', '').str.replace('$', '')
-tesla_revenue['Revenue'] = pd.to_numeric(tesla_revenue['Revenue'], errors='coerce')
-tesla_revenue.head()  # Display the first few rows of Tesla revenue data
+  import requests
+  from bs4 import BeautifulSoup
+  
+  url = "https://investor.tesla.com"
+  response = requests.get(url)
+  soup = BeautifulSoup(response.content, 'html.parser')
+  
+  revenue_data = soup.find_all("some_selector")  # Adjust selector based on webpage structure
+  

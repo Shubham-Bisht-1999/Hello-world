@@ -1,5 +1,7 @@
-# Extract GameStop stock data
-gamestop = yf.Ticker('GME')
-gamestop_data = gamestop.history(period="max")
-gamestop_data.reset_index(inplace=True)
-gamestop_data.head()  # Display the first few rows of GameStop stock data
+  import yfinance as yf
+  
+  gamestop = yf.Ticker("GME")  # Ticker symbol for GameStop
+  gamestop_data = gamestop.history(period="max")
+  gamestop_data.reset_index(inplace=True)
+  print(gamestop_data.head())  # Display the first five rows
+  
