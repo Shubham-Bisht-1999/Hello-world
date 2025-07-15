@@ -1,0 +1,14 @@
+# URL for GameStop revenue data
+url_gamestop = 'https://www.macrotrends.net/stocks/charts/GME/gamestop/revenue'
+html_data_gamestop = requests.get(url_gamestop).text
+
+# Parse the HTML content
+soup_gamestop = BeautifulSoup(html_data_gamestop, 'html.parser')
+tables_gamestop = pd.read_html(html_data_gamestop)
+
+# Extract the revenue table
+gamestop_revenue = tables_gamestop[0]  # Adjust index based on the actual table
+gamestop_revenue.columns = ['Date', 'Revenue']
+gamestop_revenue["Revenue"] = gamestop_revenue['Revenue'].str.replace(',', '').str.replace('$', '')
+gamestop_revenue['Revenue'] = pd.to_numeric(gamestop_revenue['Revenue'], errors='coerce')
+gamestop_revenue.head()  # Display the first few rows of GameStop revenue data

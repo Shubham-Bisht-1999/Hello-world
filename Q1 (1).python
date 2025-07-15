@@ -1,0 +1,7 @@
+import yfinance as yf
+
+# Extract Tesla stock data
+tesla = yf.Ticker('TSLA')
+tesla_data = tesla.history(period="max")
+tesla_data.reset_index(inplace=True)
+tesla_data.head()  # Display the first few rows of Tesla stock data

@@ -1,0 +1,1 @@
+make_dashboard(gamestop_data, gamestop_revenue, 'GameStop Stock and Revenue Dashboard')
